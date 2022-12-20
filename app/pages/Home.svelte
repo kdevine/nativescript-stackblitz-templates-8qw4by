@@ -1,12 +1,19 @@
 <page>
-    <actionBar title="Home" />
-    <gridLayout>
-        <label class="text-xl align-middle text-center text-gray-500" text="{message}" />
-    </gridLayout>
+    <actionBar title="NativeFlix" />
+    <stackLayout>
+        <listView height="100%" separatorColor="transparent" items="{flicks}">
+            <Template let:item>
+                <label text="{item.title}" />
+            </Template>
+        </listView>
+    </stackLayout>
 </page>
 
 <script lang="ts">
-    let message: string = "Blank Svelte Native App"
+    import { Template } from 'svelte-native/components'
+    import { FlickService } from '../services/FlickService'
+
+    let flicks = FlickService.getInstance().getFlicks()
 </script>
 
 <style>
